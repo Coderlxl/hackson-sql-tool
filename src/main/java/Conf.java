@@ -3,7 +3,7 @@
  *
  * 注意：根据实际信息填写：TIDB_URL，TIDB_USER，TIDB_PASSWROD
  */
-public class TiDBConf {
+public class Conf {
 
     public final static String FLINK_DB_NAME = "hive.test_demo_db";
 
@@ -16,4 +16,6 @@ public class TiDBConf {
     //TODO
     public final static String TIDB_PASSWROD = "${password}";
 
+    //TODO
+    public static String HIVE_CONF_DIR = "";
 }

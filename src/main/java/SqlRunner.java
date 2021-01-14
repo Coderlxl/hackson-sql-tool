@@ -15,10 +15,6 @@ public class SqlRunner {
 
     private static EnvironmentSettings settings = EnvironmentSettings.newInstance().useBlinkPlanner().inBatchMode().build();
 
-    //TODO
-    //注意：本地开发的时候，把实际的 hive conf 文件放到 resources/hive/ 里
-    private static String hiveConfDir = "src/main/resources/hive/";
-
     public String executeSQL(String sql) {
         return executeSQL(false, sql);
     }
@@ -33,7 +29,7 @@ public class SqlRunner {
      */
     private String executeSQL(boolean isHiveSQL, String sql) {
         TableEnvironment tableEnvironment = TableEnvironment.create(settings);
-        HiveCatalog hiveCatalog = new HiveCatalog("hive", "default", hiveConfDir);
+        HiveCatalog hiveCatalog = new HiveCatalog("hive", "default", Conf.HIVE_CONF_DIR);
         tableEnvironment.registerCatalog("hive", hiveCatalog);
 
         // 使用 Hive dialect
@@ -60,7 +56,7 @@ public class SqlRunner {
      */
     public String executeQuerySQL(String sql) {
         TableEnvironment tableEnvironment = TableEnvironment.create(settings);
-        HiveCatalog hiveCatalog = new HiveCatalog("hive", "default", hiveConfDir);
+        HiveCatalog hiveCatalog = new HiveCatalog("hive", "default", Conf.HIVE_CONF_DIR);
         tableEnvironment.registerCatalog("hive", hiveCatalog);
 
         String errorMsg = "";
